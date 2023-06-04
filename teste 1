@@ -1,0 +1,58 @@
+///Faça um programa que leia os dados de 10 alunos (Nome, Nro. USP, Média Final), armazenando em
+///um vetor. Uma vez lidos os dados, divida estes dados em 2 novos vetores, o vetor dos aprovados e o
+///vetor dos reprovados, considerando a média mínima para a aprovação como sendo 5.0. Exibir na tela
+///os dados do vetor de aprovados, seguido dos dados do vetor de reprovados.
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+typedef struct t_dt_std
+{
+    char nome[50];
+    int nro;
+    float media;
+}t_std;
+
+int main()
+{
+    char nome[50];
+    int nro;
+    float media;
+    int i, d;
+    t_std std[10];
+
+    printf("quantos alunos voce quer inserir os dados e separa-los em aprovados e reprovados? \n");
+    scanf("%d", &d);
+
+    for(i=0 ; i<d; i++)
+    {
+        printf(" forneca o nome do aluno %d \n", (i +1));
+        fflush(stdin);
+        fgets(nome, 50, stdin);
+        printf("forneca o nro usp \n");
+        scanf("%d", &nro);
+        printf(" forneca media final \n");
+        scanf( "%f", &media);
+
+        std[i].nro = nro;
+        strcpy( std[i].nome , nome);
+        std[i].media = media;
+    }
+    printf("APROVADOS!!! \n");
+    for(i=0; i<d; i++)
+    {
+        if(std[i].media>=5)
+        {
+            printf("%s (%d): %f \n", std[i].nome, std[i].nro, std[i].media);
+        }
+    }
+    printf("Reprovados :( \n");
+    for(i=0; i<d; i++)
+    {
+        if(std[i].media<5)
+        {
+            printf("%s (%d): %f \n", std[i].nome, std[i].nro, std[i].media);
+        }
+    }
+    return 0;
+}
